@@ -32,7 +32,7 @@ class Mazo(object):
             card_key = card.__str__()
             del self.deck[card_key]
         mano = Mano(cards)
-        return mano
+        return cards
 
     def carta_random(self):
         cards = list(self.deck.values())

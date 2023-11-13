@@ -1,6 +1,5 @@
 from collections import Counter
 
-
 class Mano(object):
 
     jugada = {
@@ -19,7 +18,7 @@ class Mano(object):
         self.cards = cards
         self.count = self.conteo_ranks()
         self.ranks = self.sorted_ranks()
-        self.palos = self.palos()
+        self.suits = self.palos()
         self.valor = self.mejor_jugada()
         self.carta_alta = self.carta_alta()
 
@@ -71,12 +70,12 @@ class Mano(object):
         final = False
         i = 0
         while color and (not final):
-            palo = self.palos[i]
+            palo = self.suits[i]
             i += 1
-            siguiente_palo = self.palos[i]
+            siguiente_palo = self.suits[i]
             if palo != siguiente_palo:
                 color = False
-            if i == (len(self.palos)-1):
+            if i == (len(self.suits)-1):
                 final = True
         return color
 

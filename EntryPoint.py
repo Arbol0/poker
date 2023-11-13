@@ -1,4 +1,6 @@
 from partida import Partida
+from card import Card
+from mano import Mano
 
 def  num_jugadores_input():
     muchos_jugadores = True
@@ -18,4 +20,14 @@ def main():
     partida.start_round()
 
 if __name__ == '__main__':
-    main()
+    #main()
+    cards = list()
+    for rank in Card.ranks:
+            for palo in Card.palos:
+                card = Card(rank, palo)
+                cards.append(card)
+    cards = cards[:5]
+    mano = Mano(cards)
+    conteo = mano.conteo_ranks()
+    print(mano.palos())
+
