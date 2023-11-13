@@ -5,7 +5,7 @@ from mano import Mano
 class Mazo(object):
 
     def __init__(self):
-        self.deck = self.deck()
+        self.deck = self.new_deck()
 
     def __str__(self):
         cards_str = list()
@@ -14,7 +14,7 @@ class Mazo(object):
         cards_str = str(cards_str)
         return cards_str
 
-    def deck(self):
+    def new_deck(self):
         deck = dict()
         for rank in Card.ranks:
             for palo in Card.palos:
@@ -32,7 +32,7 @@ class Mazo(object):
             card_key = card.__str__()
             del self.deck[card_key]
         mano = Mano(cards)
-        return cards
+        return mano
 
     def carta_random(self):
         cards = list(self.deck.values())

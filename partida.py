@@ -1,6 +1,5 @@
 from jugador import Jugador
 from Mazo import Mazo
-from result import Result
 import controller
 
 
@@ -30,16 +29,16 @@ class Partida (object):
         return jugadores
 
     def results(self):
-        winner = Result(0, 0, 0)
+        winner = {'index': 0, 'valor': 0, 'max_rank': 0}
         index = 0
         for jugador in self.jugadores:
             print('\n'+jugador.__str__())
             mano = jugador.mano
-            if winner.valor_jugada < mano.valor:
-                winner = Result(index, mano.valor, mano.carta_alta)
-            elif winner.valor_jugada == mano.valor:
-                if winner.carta_alta < mano.carta_alta:
-                    winner = Result(index, mano.valor, mano.carta_alta)
+            if winner['valor'] < mano.valor:
+                winner = {'index': index, 'valor': mano.valor, 'max_rank': mano.carta_alta}
+            elif winner['valor'] == mano.valor:
+                if winner['max_rank'] < mano.carta_alta:
+                    winner = {'index': index, 'valor': mano.valor, 'max_rank': mano.carta_alta}
             index += 1
         #winner
         return winner
@@ -48,5 +47,4 @@ class Partida (object):
         print()
 
     def start_round(self):
-        self.results()
-        print('El ganador es :'+str(self.jugadores[self.winner.index].name))
+        print('El ganador es :'+str(self.jugadores[self.winner['index']].name))

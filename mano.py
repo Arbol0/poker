@@ -20,7 +20,7 @@ class Mano(object):
         self.ranks = self.sorted_ranks()
         self.suits = self.palos()
         self.valor = self.mejor_jugada()
-        self.carta_alta = self.carta_alta()
+        self.carta_alta = self.max_rank()
 
 
     def __str__(self):
@@ -104,6 +104,6 @@ class Mano(object):
             valor = self.jugada['escalera']
         return valor
 
-    def carta_alta(self):
+    def max_rank(self):
         keys = list(self.count.keys())
         return keys[0]
