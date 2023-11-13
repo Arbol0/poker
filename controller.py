@@ -1,19 +1,5 @@
 from bd import get_db
 
-l = """
-        CREATE TABLE partida (
-        id INTEGER PRIMARY KEY,
-        ronda INTEGER NOT NULL
-        ); """
-
-r = """
-        CREATE TABLE jugador (
-        id INTEGER PRIMARY KEY,
-        nombre VARCHAR(25) NOT NULL,
-        dinero INTEGER NOT NULL,
-        partida_FK INTEGER NULL,
-        FOREIGN KEY(partida_FK) REFERENCES partida(id)
-        ); """
 
 
 def insert_partida(partida):
