@@ -11,7 +11,7 @@ class Partida (object):
         self.num_jugadores = num_jugadores
         self.id = self.insert_partida()
         self.jugadores = self.jugadores()
-        self.winner = self.results()
+
 
     def insert_partida(self):
         partida = [
@@ -24,7 +24,8 @@ class Partida (object):
     def jugadores(self):
         jugadores = list()
         for i in range(self.num_jugadores):
-            jugador = Jugador(self.deck, self.id)
+            jugador = Jugador(self.id)
+            jugador.nueva_mano(self.deck)
             jugadores.append(jugador)
         return jugadores
 
@@ -43,8 +44,18 @@ class Partida (object):
         #winner
         return winner
 
-    def dinero(self):
-        print()
-
     def start_round(self):
-        print('El ganador es :'+str(self.jugadores[self.winner['index']].name))
+        seguir = True
+        while(seguir):
+            #nuevas manos y baraja
+            self.deck = Mazo()
+            for jugador in self.jugadores:
+                jugador.nueva_mano(self.deck)
+            # winner y dinero
+            self.winner = self.results()
+            print('El ganador es :'+str(self.jugadores[self.winner['index']].name))
+            player = input('s para seguir, n para parar')
+            if player=='n':
+                seguir = False
+            elif player =='s':
+                seguir = True

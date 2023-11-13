@@ -5,21 +5,26 @@ import controller
 class Jugador(object):
     nombres = ['paula', 'juan', 'pepe', 'monica', 'sofia', 'santi']
 
-    def __init__(self, deck, id_pardida):
+    def __init__(self, id_pardida):
         self.id_partida = id_pardida
         self.dinero = random.randrange(0,1000)
         self.name = self.nombre_random()
         self.id = self.insert_jugador()
-        self.mano = deck.mano_random()
 
     def __str__(self):
-        string = self.name + ' ' + str(self.dinero) + ' euros ' + self.mano.__str__()
+        string = self.name + ' ' + str(self.dinero) + ' euros '
+        if self.mano:
+            string += ' ' + self.mano.__str__()
         return string
 
     def nombre_random(self):
         index = random.randrange(len(self.nombres))
         name = self.nombres[index]
         return name
+
+    def nueva_mano(self, deck):
+        self.mano = deck.mano_random()
+        return self.mano
 
     def insert_jugador(self):
         jugador = [
