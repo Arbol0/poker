@@ -102,11 +102,10 @@ class Mazo_test(unittest.TestCase):
                 self.assertEqual(deck[card_key].rank, card.rank)
                 self.assertEqual(deck[card_key].palo, card.palo)
 
-    def test_mano_random(self):
-        mazo = Mazo()
-        mano = mazo.mano_random()
-
-
+class consultas_test(unittest.TestCase):
+    def test_update_ronda(self):
+        partida = Partida(5,0)
+        partida.ronda = 1
 
 if __name__ == '__main__':
     unittest.main()

@@ -26,6 +26,13 @@ def update_ronda(data):
     statement = "UPDATE partida SET ronda = :ronda WHERE id= :id"
     cursor.execute(statement, data)
     bd.commit()
+    bd = get_db()
+    cursor = bd.cursor()
+    statement = "SELECT ronda FROM partida WHERE id= :id"
+    cursor.execute(statement, data)
+    row = cursor.fetchone()
+    bd.commit()
+    return row
 
 
 def insert_jugador(jugador):
