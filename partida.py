@@ -2,16 +2,30 @@ from jugador import Jugador
 from Mazo import Mazo
 import controller
 
-
-class Partida (object):
+class Partida(object):
 
     def __init__(self, num_jugadores, ronda):
         self.deck = Mazo()
-        self.ronda = ronda
+        self._ronda = ronda
         self.num_jugadores = num_jugadores
         self.id = self.insert_partida()
         self.jugadores = self.jugadores()
 
+    @property
+    def ronda(self):
+        return self._ronda
+
+    @ronda.setter
+    def ronda(self, valor):
+        self._ronda = valor
+        self.update_ronda()
+
+    def update_ronda(self):
+        data = {
+            'ronda': self.ronda,
+            'id': self.id
+        }
+        controller.update_ronda(data)
 
     def insert_partida(self):
         partida = [
@@ -40,9 +54,10 @@ class Partida (object):
             elif winner['valor'] == mano.valor:
                 if winner['max_rank'] < mano.carta_alta:
                     winner = {'index': index, 'valor': mano.valor, 'max_rank': mano.carta_alta}
-        index = 0
+        index += 1
         #winner
         return winner
+
 
     def dinero(self):
         for jugador in self.jugadores:
@@ -68,3 +83,4 @@ class Partida (object):
                 seguir = False
             elif player =='s':
                 seguir = True
+            self.ronda += 1

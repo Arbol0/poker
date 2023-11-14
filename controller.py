@@ -20,6 +20,13 @@ def max_id_partida():
     return row[0]
 
 
+def update_ronda(data):
+    bd = get_db()
+    cursor = bd.cursor()
+    statement = "UPDATE partida SET ronda = :ronda WHERE id= :id"
+    cursor.execute(statement, data)
+    bd.commit()
+
 
 def insert_jugador(jugador):
     bd = get_db()
