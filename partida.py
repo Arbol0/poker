@@ -40,20 +40,29 @@ class Partida (object):
             elif winner['valor'] == mano.valor:
                 if winner['max_rank'] < mano.carta_alta:
                     winner = {'index': index, 'valor': mano.valor, 'max_rank': mano.carta_alta}
-            index += 1
+        index = 0
         #winner
         return winner
+
+    def dinero(self):
+        for jugador in self.jugadores:
+            index = 0
+            if index == self.winner['index']:
+                jugador.dinero += self.num_jugadores * 100
+            else:
+                jugador.dinero -= 100
+            index += 1
 
     def start_round(self):
         seguir = True
         while(seguir):
-            #nuevas manos y baraja
             self.deck = Mazo()
             for jugador in self.jugadores:
                 jugador.nueva_mano(self.deck)
-            # winner y dinero
             self.winner = self.results()
-            print('El ganador es :'+str(self.jugadores[self.winner['index']].name))
+            self.dinero()
+            jugador = self.jugadores[self.winner['index']]
+            print('El ganador es :'+str(jugador.name)+' con '+str(jugador.dinero)+' $')
             player = input('s para seguir, n para parar')
             if player=='n':
                 seguir = False
