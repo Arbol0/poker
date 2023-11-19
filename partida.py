@@ -26,6 +26,7 @@ class Partida(object):
             'id': self.id
         }
         controller.update_ronda(data)
+        return 1
 
     def insert_partida(self):
         partida = [

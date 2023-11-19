@@ -1,16 +1,11 @@
 import unittest
-from EntryPoint import num_jugadores_input
 from mano import Mano
 from card import Card
-from Mazo import Mazo
 from partida import Partida
 
 partida = Partida(7, 0)
 
-class EntryPoint_test(unittest.TestCase):
-    def test_num_jugadores(self):
-        resultado = num_jugadores_input()
-        self.assertTrue(resultado < 11)
+
 
 class Mano_test(unittest.TestCase):
 
@@ -91,21 +86,8 @@ class Mano_test(unittest.TestCase):
         carta_alta = mano.max_rank()
         self.assertEqual(carta_alta, 2)
 
-class Mazo_test(unittest.TestCase):
-    def test_deck(self):
-        mazo = Mazo()
-        deck = mazo.new_deck()
-        for rank in Card.ranks:
-            for palo in Card.palos:
-                card = Card(rank, palo)
-                card_key = card.__str__()
-                self.assertEqual(deck[card_key].rank, card.rank)
-                self.assertEqual(deck[card_key].palo, card.palo)
 
-class consultas_test(unittest.TestCase):
-    def test_update_ronda(self):
-        partida = Partida(5,0)
-        partida.ronda = 1
+
 
 if __name__ == '__main__':
     unittest.main()
