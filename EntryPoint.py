@@ -1,5 +1,6 @@
 from partida import Partida
 
+
 def  num_jugadores_input():
     muchos_jugadores = True
     num_jugadores = 0
@@ -10,6 +11,7 @@ def  num_jugadores_input():
         else:
             muchos_jugadores = True
     return num_jugadores
+
 
 def main():
     print('partida de poker\n')
